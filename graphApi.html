@@ -28,29 +28,45 @@
 		
 	<script>
 		//step1:https://www.parse.com/docs/js/guide#users-facebook-users
-		// Initialize Parse
- Parse.initialize("dc6qirOub0c5tFM3EGRibM40fxXB34hJRWDnESi2", "9HhPMmOnMKFvsCtMuZwCYRVfd0D0YJCfmxT6HovU");
- window.fbAsyncInit = function() {
- Parse.FacebookUtils.init({ // this line replaces FB.init({
- appId : '838463579536966', // Facebook App ID
- status : true, // check Facebook Login status
- cookie : true, // enable cookies to allow Parse to access the session
- xfbml : true, // initialize Facebook social plugins on the page
- version : 'v2.3' // point to the latest Facebook Graph API version
- });
- // Run code after the Facebook SDK is loaded.
- };
- (function(d, s, id){
- var js, fjs = d.getElementsByTagName(s)[0];
- if (d.getElementById(id)) {return;}
- js = d.createElement(s); js.id = id;
- js.src = "//connect.facebook.net/en_US/sdk.js";
- fjs.parentNode.insertBefore(js, fjs);
- }(document, 'script', 'facebook-jssdk'));
+		<script>
+// Initialize Parse
+  Parse.initialize("C9wqME7pPqZtZPSQEs6bhTCfCQG4jj1ICtSc0Gmj", "Sb26hS3fz0shqBEPm0N7AJ1tmvS5Z0FP4AGHb4aM");
+
+window.fbAsyncInit = function() {
+    Parse.FacebookUtils.init({ // this line replaces FB.init({
+      appId      : '{1587689921510143}', // Facebook App ID
+      status     : true,  // check Facebook Login status
+      cookie     : true,  // enable cookies to allow Parse to access the session
+      xfbml      : true,  // initialize Facebook social plugins on the page
+      version    : 'v2.3'// point to the latest Facebook Graph API version
+    });
+// Run code after the Facebook SDK is loaded.
+  };
+      (function(d, s, id){
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
        
 		function fblogin(){
 		//step2:https://developers.facebook.com/docs/graph-api/using-graph-api/v2.3	
-			
+		Parse.FacebookUtils.logIn(null, {
+  success: function(user) {
+if (!user.existed()) {
+      alert("User signed up and logged in through Facebook!");
+    } else
+ {
+      alert("User logged in through Facebook!");
+    }
+    //等等要在這邊加程式碼 FB.getLoginStatus 
+  },
+  error: function(user, error) {
+    alert("User cancelled the Facebook login or did not fully authorize.");
+  }
+});
 		}
 		
 	</script>
